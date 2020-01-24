@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">MeetingScheduler</string>
+    <string name="schedule_company_meeting">Schedule company meeting</string>
 </resources>
