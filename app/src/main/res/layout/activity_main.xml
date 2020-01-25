@@ -12,14 +12,39 @@
         android:orientation="vertical">
 
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/margin_60dp"
-            android:orientation="horizontal"
             android:background="@color/color_green">
 
+            <LinearLayout
+                android:id="@+id/layout_prev_day"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="@dimen/margin_30dp"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/margin_5dp"
+                    android:src="@drawable/ic_left"/>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="PREV"
+                    android:textSize="@dimen/text_18sp"
+                    android:textColor="@android:color/white"/>
+
+            </LinearLayout>
+
             <androidx.appcompat.widget.AppCompatTextView
-                android:layout_width="match_parent"
+                android:id="@+id/txt_selected_day"
+                android:layout_centerInParent="true"
+                android:layout_width="wrap_content"
                 android:layout_height="@dimen/margin_60dp"
                 android:textColor="@android:color/white"
                 android:gravity="center"
@@ -30,7 +55,33 @@
                 app:fontFamily="@font/opensans_bold"
                 android:textAllCaps="true" />
 
-        </LinearLayout>
+            <LinearLayout
+                android:id="@+id/layout_next_day"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="NEXT"
+                    android:textSize="@dimen/text_18sp"
+                    android:textColor="@android:color/white"/>
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="@dimen/margin_30dp"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/margin_5dp"
+                    android:src="@drawable/ic_right"/>
+
+
+
+            </LinearLayout>
+
+        </RelativeLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_meetings"

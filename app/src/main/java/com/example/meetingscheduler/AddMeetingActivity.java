@@ -10,11 +10,15 @@ import android.text.format.DateFormat;
 import android.widget.DatePicker;
 import android.widget.Toast;
 
+import com.example.meetingscheduler.Utils.Repository;
+import com.example.meetingscheduler.Utils.RequestCallBack;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -37,6 +41,8 @@ public class AddMeetingActivity extends AppCompatActivity {
 
     Date startTime,endTime;
 
+    String selectedDate = "";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,9 +50,13 @@ public class AddMeetingActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         meetings = new ArrayList<>();
-        meetings = getIntent().getParcelableArrayListExtra("meeting");
+        selectedDate = getIntent().getStringExtra("selectedDate");
 
         timeFormat = new SimpleDateFormat("HH:mm");
+
+        txt_date.setText(selectedDate);
+
+        fetchMeetings();
     }
 
     @OnClick(R.id.txt_date)
@@ -111,6 +121,7 @@ public class AddMeetingActivity extends AppCompatActivity {
                         Date reportDate = df.parse(selectedDay + "/" + (selectedMonth+1) +
                                 "/" + selectedYear);
                         txt_date.setText(df.format(reportDate));
+                        fetchMeetings();
                     } catch (ParseException e) {
                         e.printStackTrace();
                     }
@@ -160,6 +171,25 @@ public class AddMeetingActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     };
+
+    private void fetchMeetings()
+    {
+        Repository.getInstance().getMeetings(selectedDate
+                , new RequestCallBack<List<Meeting>>()
+                {
+                    @Override
+                    public void onSuccess(List<Meeting> response)
+                    {
+                        meetings.clear();
+                        meetings.addAll(response);
+                    }
+                    @Override
+                    public void onFailure(int failureCode)
+                    {
+                        meetings.clear();
+                    }
+                });
+    }
 
 
 }
