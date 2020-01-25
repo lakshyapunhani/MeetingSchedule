@@ -9,7 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -19,9 +19,9 @@ public class MeetingsAdapter extends
 {
 
     private Context context;
-    List<Meeting> meetings;
+    ArrayList<Meeting> meetings;
 
-    public MeetingsAdapter(List<Meeting> meetings) {
+    public MeetingsAdapter(ArrayList<Meeting> meetings) {
         this.meetings = meetings;
     }
 

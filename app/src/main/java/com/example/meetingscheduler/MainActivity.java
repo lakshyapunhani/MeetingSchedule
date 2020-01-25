@@ -5,22 +5,28 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
+
+import com.example.meetingscheduler.Utils.Repository;
+import com.example.meetingscheduler.Utils.RequestCallBack;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class MainActivity extends AppCompatActivity {
 
     @BindView(R.id.recycler_meetings)
     RecyclerView recycler_meetings;
 
-    List<Meeting> meetings;
+    ArrayList<Meeting> meetings;
     MeetingsAdapter meetingsAdapter;
+
+    String selectedDate = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,5 +65,14 @@ public class MainActivity extends AppCompatActivity {
                         meetingsAdapter.notifyDataSetChanged();
                     }
                 });
+    }
+
+    @OnClick(R.id.btn_add_new_meeting)
+    public void addMeeting()
+    {
+        Intent intent = new Intent(MainActivity.this,
+                AddMeetingActivity.class);
+        intent.putParcelableArrayListExtra("meeting",meetings);
+        startActivity(intent);
     }
 }
