@@ -37,7 +37,7 @@ public class MeetingsAdapter extends
     @Override
     public void onBindViewHolder(@NonNull ListViewHolder holder, int position) {
         Meeting meeting = meetings.get(position);
-        holder.meeting_time.setText(meeting.getStart_time() + " = " + meeting.getEnd_time());
+        holder.meeting_time.setText(meeting.getStart_time() + " - " + meeting.getEnd_time());
         holder.meeting_description.setText(meeting.getDescription());
     }
 
