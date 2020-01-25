@@ -85,7 +85,7 @@ public class AddMeetingActivity extends AppCompatActivity {
                         startTime.before(meetingEndTime);
                 if (s)
                 {
-                    Toast.makeText(this, "Meeting already scheduled for this time slot",
+                    Toast.makeText(this, "Slot not available",
                             Toast.LENGTH_SHORT).show();
                     break;
                 }
@@ -93,7 +93,7 @@ public class AddMeetingActivity extends AppCompatActivity {
                         endTime.before(meetingEndTime);
                 if (b)
                 {
-                    Toast.makeText(this, "Meeting already scheduled for this time slot",
+                    Toast.makeText(this, "Slot not available",
                             Toast.LENGTH_SHORT).show();
                     break;
                 }
@@ -102,7 +102,7 @@ public class AddMeetingActivity extends AppCompatActivity {
                 {
                     continue;
                 }
-                Toast.makeText(this, "Meeting created",
+                Toast.makeText(this, "Slot available",
                         Toast.LENGTH_SHORT).show();
 
             } catch (ParseException e) {

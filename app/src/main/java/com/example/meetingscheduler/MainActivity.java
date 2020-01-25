@@ -15,6 +15,7 @@ import com.example.meetingscheduler.Utils.RequestCallBack;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import butterknife.BindView;
@@ -29,6 +30,9 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.txt_selected_day)
     AppCompatTextView txt_selected_day;
 
+    @BindView(R.id.btn_add_new_meeting)
+    AppCompatTextView btn_add_new_meeting;
+
     ArrayList<Meeting> meetings;
     MeetingsAdapter meetingsAdapter;
 
@@ -37,6 +41,8 @@ public class MainActivity extends AppCompatActivity {
     SimpleDateFormat dateFormat;
 
     Calendar calendar;
+
+    Date currentDay,selectedDay;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +56,8 @@ public class MainActivity extends AppCompatActivity {
         dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
         selectedDate = dateFormat.format(calendar.getTime());
+        selectedDay = calendar.getTime();
+        currentDay = calendar.getTime();
         txt_selected_day.setText(selectedDate);
 
         meetingsAdapter = new MeetingsAdapter(meetings);
@@ -98,6 +106,15 @@ public class MainActivity extends AppCompatActivity {
     public void onClickPrevDay()
     {
         calendar.add(Calendar.DATE, -1);
+        selectedDay = calendar.getTime();
+        if (selectedDay.before(currentDay))
+        {
+            btn_add_new_meeting.setEnabled(false);
+        }
+        else
+        {
+            btn_add_new_meeting.setEnabled(true);
+        }
         selectedDate = dateFormat.format(calendar.getTime());
         txt_selected_day.setText(selectedDate);
         fetchMeetings();
@@ -108,6 +125,15 @@ public class MainActivity extends AppCompatActivity {
     public void onClickNextDay()
     {
         calendar.add(Calendar.DATE, 1);
+        selectedDay = calendar.getTime();
+        if (selectedDay.before(currentDay))
+        {
+            btn_add_new_meeting.setEnabled(false);
+        }
+        else
+        {
+            btn_add_new_meeting.setEnabled(true);
+        }
         selectedDate = dateFormat.format(calendar.getTime());
         txt_selected_day.setText(selectedDate);
         fetchMeetings();
