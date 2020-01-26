@@ -81,17 +81,15 @@ public class AddMeetingActivity extends AppCompatActivity {
                 Date meetingStartTime = timeFormat.parse(meeting.getStart_time());
                 Date meetingEndTime= timeFormat.parse(meeting.getEnd_time());
 
-                boolean s = startTime.after(meetingStartTime) &&
-                        startTime.before(meetingEndTime);
-                if (s)
+                if (startTime.after(meetingStartTime) &&
+                        startTime.before(meetingEndTime))
                 {
                     Toast.makeText(this, "Slot not available",
                             Toast.LENGTH_SHORT).show();
                     break;
                 }
-                boolean b = endTime.after(meetingStartTime) &&
-                        endTime.before(meetingEndTime);
-                if (b)
+                if (endTime.after(meetingStartTime) &&
+                        endTime.before(meetingEndTime))
                 {
                     Toast.makeText(this, "Slot not available",
                             Toast.LENGTH_SHORT).show();
@@ -189,6 +187,12 @@ public class AddMeetingActivity extends AppCompatActivity {
                         meetings.clear();
                     }
                 });
+    }
+
+    @OnClick(R.id.layout_back)
+    public void onClickBack()
+    {
+        super.onBackPressed();
     }
 
 

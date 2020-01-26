@@ -1,5 +1,6 @@
 package com.example.meetingscheduler;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.recyclerview.widget.DefaultItemAnimator;
@@ -8,6 +9,7 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.PersistableBundle;
 
 import com.example.meetingscheduler.Utils.Repository;
 import com.example.meetingscheduler.Utils.RequestCallBack;
@@ -55,8 +57,18 @@ public class MainActivity extends AppCompatActivity {
 
         dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
-        selectedDate = dateFormat.format(calendar.getTime());
-        selectedDay = calendar.getTime();
+        if (savedInstanceState != null && savedInstanceState.containsKey("selectedDate"))
+        {
+            selectedDate = savedInstanceState.getString("selectedDate");
+            selectedDay = (Date) savedInstanceState.getSerializable("selectedDay");
+        }
+        else
+        {
+            selectedDate = dateFormat.format(calendar.getTime());
+            selectedDay = calendar.getTime();
+        }
+
+
         currentDay = calendar.getTime();
         txt_selected_day.setText(selectedDate);
 
@@ -137,5 +149,13 @@ public class MainActivity extends AppCompatActivity {
         selectedDate = dateFormat.format(calendar.getTime());
         txt_selected_day.setText(selectedDate);
         fetchMeetings();
+    }
+
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString("selectedDate",selectedDate);
+        outState.putSerializable("selectedDay",selectedDay);
     }
 }

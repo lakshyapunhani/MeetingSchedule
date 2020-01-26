@@ -93,21 +93,32 @@
 
     </LinearLayout>
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/btn_add_new_meeting"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/margin_60dp"
-        android:background="@color/color_green"
-        android:padding="@dimen/margin_15dp"
-        android:text="@string/schedule_company_meeting"
-        app:fontFamily="@font/opensans_bold"
-        android:textAllCaps="true"
-        android:textColor="@android:color/white"
-        android:textSize="@dimen/text_16sp"
+        android:orientation="vertical"
         android:gravity="center"
-        android:clickable="true"
-        android:focusable="true"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/btn_add_new_meeting"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/margin_50dp"
+            android:background="@drawable/bg_rounded_button"
+            android:text="@string/schedule_company_meeting"
+            app:fontFamily="@font/opensans_bold"
+            android:textAllCaps="true"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/text_16sp"
+            android:gravity="center"
+            android:clickable="true"
+            android:focusable="true"
+            android:layout_marginLeft="@dimen/margin_20dp"
+            android:layout_marginRight="@dimen/margin_20dp" />
+
+    </LinearLayout>
+
+
 
 
 

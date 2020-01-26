@@ -2,7 +2,8 @@
 <LinearLayout android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="81dp"
-    xmlns:android="http://schemas.android.com/apk/res/android" >
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -12,14 +13,36 @@
         android:paddingTop="@dimen/margin_10dp"
         android:paddingBottom="@dimen/margin_10dp">
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/txt_meeting_time"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:gravity="center_vertical"
-            android:text="11:00 AM - 12:00 PM">
-        </androidx.appcompat.widget.AppCompatTextView>
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txt_meeting_start_time"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                tools:text="11:00 AM">
+            </androidx.appcompat.widget.AppCompatTextView>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text=" - ">
+            </androidx.appcompat.widget.AppCompatTextView>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txt_meeting_end_time"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                tools:text="12:00 PM">
+            </androidx.appcompat.widget.AppCompatTextView>
+
+        </LinearLayout>
 
         <View
             android:layout_width="match_parent"
@@ -34,7 +57,7 @@
             android:maxLines="1"
             android:gravity="center_vertical"
             android:textColor="@android:color/black"
-            android:text="Lorem Ipsum is simply dummy text of the printing">
+            tools:text="Lorem Ipsum is simply dummy text of the printing">
         </androidx.appcompat.widget.AppCompatTextView>
 
     </LinearLayout>
